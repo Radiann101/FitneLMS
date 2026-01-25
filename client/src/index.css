@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&family=Pinyon+Script&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --text-home-heading-large: 40px;
+  --text-home-heading-small: 15px;
+  --h-section-height: '500px';
+}
+
+
+*{
+  font-family: Bitter;
+}

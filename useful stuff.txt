@@ -1,0 +1,16 @@
+npm is the standard package manager for Node. js.
+npm install react-router-dom: React Router DOM makes it easy to switch between pages in a React app without reloading
+npm install react-youtube: this package allows me to add youtube videos to the website
+npm install uniqid: Generates time-based IDs: It creates an ID using the system's time, down to the microsecond.
+npm install quill: downloads and installs the Quill rich text editor library, a powerful, customizable, open-source WYSIWYG editor, into your project's node_modules folder, making its JavaScript, CSS, and themes available for you to build rich text features like bolding, lists, links, and custom formats into your web applications.
+npm install humamize-duration: Object used to customize the value used to calculate each unit of time. Most useful when you want to update the length of years or months, which have ambiguous lengths
+npm install rc-progress: this package helps me design a progress bar (circular progress bar like in odin)
+npm install react-simple-star-rating: helps me create star ratings for courses etc.
+
+-added tailwind.css to "src/index.css" file to be able to customize website
+
+-added google fonts "Bitter" added via import method
+
+-in components/user/ Navbar.jsx and Hero.jsx were added and filled with rafce autofill command command: A "Hero" section usually replaces the need for a standard <h1> with something more visual. Instead of just a tag, we use a section or header to contain the layout
+
+-in src/context/AppContext.jsx the code does the following: is the "blueprint" for a Global State system. It allows you to share data (like a user's login status or a shopping cart) with every component in your app without having to pass props down manually through every level.
