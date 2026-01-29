@@ -2,6 +2,7 @@ import humanizeDuration from 'humanize-duration';
 import { createContext, useEffect, useState } from "react";
 import { testData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import {useAuth, useUser} from '@clerk/clerk-react'
 
 export const AppContext=createContext()
 export const AppContextProvider = (props) =>{
@@ -10,9 +11,15 @@ export const AppContextProvider = (props) =>{
     const [enrolledCourses, setenrolledCourses] = useState([])
     const [isAdmin, setIsAdmin] = useState(true);
     const navigate = useNavigate()
+    const {getToken} = useAuth()
+    const {user} = useUser()
 
     const getAllCourses =async()=>{
         setAllCourses(testData)
+    }
+
+    const logToken = async ()=>{
+        console.log(await getToken());
     }
 
     useEffect(()=>{
@@ -20,6 +27,12 @@ export const AppContextProvider = (props) =>{
         getUserEnrolledCourses()
     },[]
     )
+    useEffect(()=> {
+        if (user) {
+            logToken()
+        }
+    },[user])
+    
     const calChapterTime = (chapter)=>{
         let time = 0;
         chapter.chapterMaterial.map((lecture)=>time +=lecture.lectureDuration)
