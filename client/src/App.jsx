@@ -13,6 +13,7 @@ import Dashboard from './pages/admin/Dashboard'
 import UsersEnrolled from './pages/admin/UsersEnrolled'
 import "quill/dist/quill.snow.css";
 import Navbar from './components/user/Navbar'
+import {ToastContainer} from 'react-toastify'
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const isAdminRoute = useMatch('/admin/*')
 
   return (
     <div className='text-default min-h-screen bg-white'>
+      <ToastContainer/>
       {!isAdminRoute && <Navbar/> }
       <Routes>
         <Route path='/' element={<Home />}/>

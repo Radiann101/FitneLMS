@@ -3,6 +3,9 @@ import { createContext, useEffect, useState } from "react";
 import { testData } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import {useAuth, useUser} from '@clerk/clerk-react'
+import axios from 'axios'
+import { toast } from 'react-toastify';
+
 
 export const AppContext=createContext()
 export const AppContextProvider = (props) =>{
@@ -13,9 +16,21 @@ export const AppContextProvider = (props) =>{
     const navigate = useNavigate()
     const {getToken} = useAuth()
     const {user} = useUser()
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const getAllCourses =async()=>{
-        setAllCourses(testData)
+        //setAllCourses(testData)
+        try {
+          const {data} = await axios.get(backendUrl + '/api/course/all');
+          if (data.success){
+            setAllCourses(data.courses)
+          }
+          else {
+            toast.error(data.message)
+          }
+        } catch (error) {
+            toast.error(error.message)
+        }
     }
 
     const logToken = async ()=>{
