@@ -78,8 +78,8 @@ export const addUserRating = async(req, res)=>{
             return res.json({success: false, message: 'Course not found'})
         }
         const user = await User.findById(userId)
-        if (!user || user.enrolledCourses.includes(courseId)) {
-            return res.json({success: false, message: 'User is not enrolled in this course'})
+        if (!user || !user.enrolledCourses.includes(courseId)) {
+            return res.json({ success: false, message: 'User is not enrolled in this course' });
         }
         const existingRating = course.courseRatings.findIndex(r => r.userId === userId)
         if(existingRating > -1){
@@ -93,5 +93,43 @@ export const addUserRating = async(req, res)=>{
 
     } catch (error) {
          return res.json({success:false, message: error.message})
+    }
+}
+
+// Enroll User in a Course (Free)
+export const enrollUser = async (req, res) => {
+    try {
+        const userId = req.auth.userId;
+        const { courseId } = req.body;
+
+        const course = await Course.findById(courseId);
+        if (!course) {
+            return res.json({ success: false, message: 'Course not found' });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.json({ success: false, message: 'User not found' });
+        }
+
+        // Check if already enrolled to prevent duplicates
+        if (user.enrolledCourses.includes(courseId)) {
+            return res.json({ success: true, message: 'Already enrolled' });
+        }
+
+        // 1. Add Course to User's enrolledCourses array
+        user.enrolledCourses.push(courseId);
+        await user.save();
+
+        // 2. Add User to Course's enrolledStudents array
+        if (course.enrolledUsers) {
+            course.enrolledUsers.push(userId);
+            await course.save();
+        }
+
+        res.json({ success: true, message: 'Successfully enrolled' });
+
+    } catch (error) {
+        res.json({ success: false, message: error.message });
     }
 }
