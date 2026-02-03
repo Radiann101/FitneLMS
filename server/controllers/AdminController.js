@@ -69,12 +69,12 @@ export const adminDashboardData = async (req, res)=>{
         {
             _id: {$in: course.enrolledUsers}
         }, 'name imageUrl');
-        users.array.forEach(users => {
+        users.forEach(user => { // Corrected: removed .array and changed variable to 'user'
             enrolledUsersData.push({
-                courseTitle: course.courseTitle,
-                users
-            });
-        });
+            courseTitle: course.courseTitle,
+            student: user // Frontend expects 'student' property
+    });
+});
     }
         res.json({success: true, dashboardData: {
             enrolledUsersData, totalCourses

@@ -1,19 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import Loading from '../../components/user/Loading'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const MyCourses = () => {
 
-  const {allCourses} = useContext(AppContext)
+  const {backendUrl, isAdmin, getToken} = useContext(AppContext)
   const [courses, setCourses] = useState(null)
 
   const getCourses = async ()=> {
-    setCourses(allCourses)
+    try {
+      const token = await getToken()
+      const {data} = await axios.get(backendUrl + '/api/admin/courses',
+        {headers: {Authorization: `Bearer ${token}`}}
+      )
+      data.success && setCourses(data.courses)
+
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   useEffect (()=> {
-    getCourses()
-  },[])
+    if (isAdmin){
+      getCourses()
+    }
+ 
+  },[isAdmin])
 
 
   return  courses ? (
@@ -37,7 +51,7 @@ const MyCourses = () => {
                     <span className='hidden md:block truncate'>{course.courseTitle}</span>
                   </td>
                   <td className='px-3 py-3'>{course.enrolledUsers.length}</td>
-                  <td className='px-3 py-3'>{new Date(course.uploadedAt).toLocaleDateString()}</td>
+                  <td className='px-3 py-3'>{new Date(course.createdAt).toLocaleDateString()}</td>
                 </tr>
               )
               )}

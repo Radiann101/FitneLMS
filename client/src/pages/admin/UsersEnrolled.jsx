@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import {testStudentEnrolled} from '../../assets/assets'
 import Loading from '../../components/user/Loading'
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const UsersEnrolled = () => {
-  
+  const {backendUrl, getToken, isAdmin} = useContext(AppContext)
   const [enrolledStudents, setEnrolledStudents] = useState(null)
 
   const getEnrolledStudents=async() =>{
-    setEnrolledStudents(testStudentEnrolled)
+    try {
+      const token = await getToken()
+      const {data} = await axios.get(backendUrl + '/api/admin/enrolled-users',
+        {headers: {Authorization: `Bearer ${token}`}}
+      )
+      if(data.success) {
+        setEnrolledStudents(data.enrolledStudents.reverse())
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
   useEffect(()=>{
-    getEnrolledStudents()
-  }, [])
+    if (isAdmin){
+      getEnrolledStudents()
+    }
+  }, [isAdmin])
 
   return enrolledStudents ?  (
     <div className='flex flex-col items-start justify-between min-h-screen md:pb-0 p-4 pt-8 pb-0 md:p-8'>
@@ -34,7 +52,7 @@ const UsersEnrolled = () => {
                   <span className='truncate'>{item.student.name}</span>
                 </td>
                 <td className='px-3 py-3'>{item.courseTitle}</td>
-                <td className='px-3 py-3 sm:table-cell hidden'>{new Date(item.purchaseDate).toLocaleDateString()}</td>
+                <td className='px-3 py-3 sm:table-cell hidden'>{item.enrolledAt ? new Date(item.enrolledAt).toLocaleDateString() : 'N/A'}</td>
               </tr>
             ))}
           </tbody>

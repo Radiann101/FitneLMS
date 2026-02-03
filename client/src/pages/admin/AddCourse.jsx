@@ -3,9 +3,13 @@ import Quill from 'quill'
 
 import uniqid from 'uniqid'
 import { assets } from '../../assets/assets'
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const AddCourse = () => {
-
+  const {backendUrl, getToken} = useContext(AppContext)
   const quillRef = useRef(null)
   const editorRef = useRef(null)
   const [courseTitle, setCourseTitle] = useState('')
@@ -27,7 +31,7 @@ const AddCourse = () => {
         const newChapter = {
           chapterId: uniqid(),
           chapterTitle: title,
-          chapterMaterial: [],
+          chapterContent: [],
           collapsed:false,
           chapterOrder: chapters.length > 0 ? chapters.slice(-1)[0].chapterOrder+1 : 1,
         };
@@ -52,7 +56,7 @@ const AddCourse = () => {
         setChapters(
           chapters.map((chapter)=> {
           if (chapter.chapterId === chapterId) {
-            chapter.chapterMaterial.splice(lectureIndex, 1);
+            chapter.chapterContent.splice(lectureIndex, 1);
           }
           return chapter;
         })
@@ -66,10 +70,10 @@ const AddCourse = () => {
         if (chapter.chapterId === chapterId) {
           const newLecture = {
             ...lectureDetails,
-            lectureOrder: chapter.chapterMaterial.length > 0 ? chapter.chapterMaterial.slice(-1)[0].lectureOrder +1 :1,
-            lectureIdL: uniqid()
+            lectureOrder: chapter.chapterContent.length > 0 ? chapter.chapterContent.slice(-1)[0].lectureOrder +1 :1,
+            lectureId: uniqid()
           };
-          chapter.chapterMaterial.push(newLecture);
+          chapter.chapterContent.push(newLecture);
         }
         return chapter;
       }
@@ -84,7 +88,38 @@ const AddCourse = () => {
   }
 
   const Submitter = async (e) => {
-    e.preventDefault()
+    try {
+      e.preventDefault()
+      if(!image){
+        toast.error('No thumbnail, cant upload')
+      }
+      const courseData = {
+        courseTitle,
+        courseDescription: quillRef.current.root.innerHTML, 
+        courseContent: chapters,
+      }
+
+      const formData = new FormData()
+      formData.append('courseData', JSON.stringify(courseData))
+      formData.append('image', image)
+
+      const token = await getToken()
+      const {data} = await axios.post(backendUrl + '/api/admin/add-course', 
+        formData, {headers: {Authorization: `Bearer ${token}`}})
+      if (data.success){
+        toast.success(data.message)
+        setCourseTitle('')
+        setImage(null)
+        setChapters([])
+        quillRef.current.root.innerHTML = ""
+      }
+      else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+
   }
 
 useEffect(()=>{
@@ -125,12 +160,12 @@ useEffect(()=>{
                   src={assets.dropdown_icon} width={10} className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && "-rotate-90"}`} />
                   <span className='font-semibold'>{chapterIndex + 1} {chapter.chapterTitle}</span>
                 </div>
-                <span className='text-slate-500'>{chapter.chapterMaterial.length} Lectures</span>
+                <span className='text-slate-500'>{chapter.chapterContent.length} Lectures</span>
                 <img onClick={()=> addAChapter('remove', chapter.chapterId)}className='cursor-pointer 'src={assets.crossIcon}/>
               </div>
               {!chapter.collapsed && (
                 <div className='p-3'>
-                  {chapter.chapterMaterial.map((lecture, lectureIndex)=> (
+                  {chapter.chapterContent.map((lecture, lectureIndex)=> (
                     <div key={lectureIndex} className='flex justify-between items-center mb-2'>
                       <span>
                         {lectureIndex+1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - 

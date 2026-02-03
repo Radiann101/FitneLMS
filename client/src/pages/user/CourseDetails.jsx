@@ -5,27 +5,64 @@ import Loading from '../../components/user/Loading'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration';
 import Footer from '../../components/user/Footer'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 
 
 const CourseDetails = () => {
   const {id} = useParams()
-  const [alreadyEnrolled, setalreadyEnrolled] =useState(true)
+  const [alreadyEnrolled, setalreadyEnrolled] =useState(false)
   const [courseData, setCourseData] =useState(null)
   const [openChapter, setOpenChapters] =useState({})
   
-  const {allCourses, calRating, calChapterTime, calCourseTime, calLecturesNo} = useContext(AppContext)
+  const {allCourses, calRating, calChapterTime, calCourseTime, calLecturesNo, backendUrl, userData, getToken} 
+  = useContext(AppContext)
 
   const getCourseData = async ()=>{
-    const findCourse=allCourses.find(course => course._id === id)
-    setCourseData(findCourse);
+    try {
+      const {data} = await axios.get(backendUrl + '/api/course/' + id)
+      if (data.success){
+        setCourseData(data.courseData)
+      }else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
+  
+
   const toggleChapter =(index)=>{
     setOpenChapters((previous)=>({
       ...previous, [index]: !previous[index]
     }))
   }
-useEffect(()=> {getCourseData()},[allCourses])
+  const enrollCourse = async () =>{
+    try {
+      if(!userData){
+        return toast.warn('Please login to enroll to a course')
+      }
+      if(alreadyEnrolled){
+        return toast.warn('Already enrolled')
+      }
+      const token = await getToken();
+      const {data} = await axios.post(backendUrl + '/api/user/enroll', 
+        {courseId: courseData._id}, {headers: {Authorization: `Bearer ${token}`}})
+      if (data.success){
+        toast.success(data.message);
+      }else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+useEffect(()=> {getCourseData()},[])
+useEffect(()=> {
+  if (userData && courseData)
+    setalreadyEnrolled(userData.enrolledCourses.includes(courseData._id))
+},[userData, courseData])
 
   return courseData ? (
     <>
@@ -45,28 +82,28 @@ useEffect(()=> {getCourseData()},[allCourses])
                     } alt='' className='w-3 h-3'/>)
                   )}
                   </div>
-                  <p className='text-blue-500'>({courseData.courseRatings.length}
-                    {courseData.courseRatings.length >1 ? ' ratings': ' rating'})
+                  <p className='text-blue-500'>({courseData?.courseRatings?.length || 0}
+                    {(courseData?.courseRatings?.length || 0) > 1 ? ' ratings': ' rating'})
                   </p>
-                  <p>{courseData.enrolledUsers.length} {courseData.enrolledUsers.length >1 ? ' users enrolled'
-                  :' user enrolled'}</p>
+                  <p>{courseData?.enrolledUsers?.length || 0} {(courseData?.enrolledUsers?.length || 0) > 1 ?
+                  ' users enrolled' : ' user enrolled'}</p>
                 </div>
         <p className='text-md'> Instructor: <span className='font-bold'>Pinter Csaba-Attila</span></p>
         <div className='text-gray-500 pt-10'>
             <h2 className='text-xl font-bold text-purple-400'>Course Structure</h2>
             <div className='pt-3'>
-                {courseData.courseMaterial.map((chapter, index) => (
+                {courseData?.courseContent?.map((chapter, index) => (
                    <div className='border border-gray-500 rounded mp-2 bg-white mb-1' key={index}>
                       <div onClick={()=> toggleChapter(index)} className='flex items-center justify-between cursor-pointer px-3 py-4'>
                       <div className='flex items-center gap-2'>
                         <img className={`transform transition-transform ${openChapter[index]? 'rotate-180':'' }`} src={assets.arrowDown} alt="arrow_down_icon" />
                         <p className='md:text-base test-sm font-medium'>{chapter.chapterTitle}</p>
                       </div>
-                      <p className='text-sm md:text-default font-extrabold'>{chapter.chapterMaterial.length} lectures - {calChapterTime(chapter)}</p>
+                      <p className='text-sm md:text-default font-extrabold'>{chapter.chapterContent.length} lectures - {calChapterTime(chapter)}</p>
                     </div>
                     <div className={`overflow-hidden transition-all ${openChapter[index] ? 'max-h-70' : 'max-h-0'}`}>
                       <ul className='list-disc md:pl-10 pl-4 pr-4 py-2 text-gray-500 border-t border-gray-500'>
-                        {chapter.chapterMaterial.map((lecture, i)=> (
+                        {chapter.chapterContent.map((lecture, i)=> (
                         <li className='flex items-start gap-2 py-1' key={i}> <img src={assets.playIcon} alt="playIcon" className='w-4 h-3 mt-1' /> 
                           <div className='flex items-center justify-between w-full text-gray-500 test-xs md:text-default'>
                             <p>{lecture.lectureTitle}</p>
@@ -111,7 +148,7 @@ useEffect(()=> {getCourseData()},[allCourses])
               <p>{calLecturesNo(courseData)} lesson(s)</p>
             </div>    
           </div>
-          <button className='rounded bg-blue-500 md:mt-4 mt-3 py-3 mb-3 w-full text-white-500 font-medium'>{alreadyEnrolled ? 'Enrolled': 'Enroll Now'}</button>
+          <button onClick={enrollCourse} className='rounded bg-blue-500 md:mt-4 mt-3 py-3 mb-3 w-full text-white-500 font-medium'>{alreadyEnrolled ? 'Enrolled': 'Enroll Now'}</button>
           <div className='pt-4'> 
             <p className='text-lg font-bold text-grey-500'>What will you learn in this course?</p>
             <ul className='ml-5 pt-1 pb-3 text-md md:text-md list-disc text-slate-500'>

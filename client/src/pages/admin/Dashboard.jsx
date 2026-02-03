@@ -1,18 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { assets, testDashboardData, testStudentEnrolled } from '../../assets/assets'
 import Loading from '../../components/user/Loading'
+import { toast } from 'react-toastify'
+import { useContext } from 'react'
+import { AppContext } from '../../context/AppContext'
+import axios from 'axios'
 
 const Dashboard = () => {
-
+  const {backendUrl, getToken, isAdmin} = useContext(AppContext)
   const [dashboardData, setDashboardData] = useState(null)
 
   const getDashboardData = async () => {
-    setDashboardData(testDashboardData)
+    try {
+      const token = await getToken()
+      const {data} = await axios.get(backendUrl + '/api/admin/dashboard',
+        {headers: {Authorization: `Bearer ${token}`}}
+      )
+      if (data.success) {
+        setDashboardData(data.dashboardData)
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
  //execute getDashboardData function whenever this Dashboard component gets loaded
  useEffect(()=> {
-  getDashboardData()
- }, [])
+  if (isAdmin){
+    getDashboardData()
+  }
+ }, [isAdmin])
 
   return dashboardData ? (
     <div className='min-h-screen flex flex-col justify-between items-start gap-6 md:p-6 md:pb-0 p-4
@@ -22,7 +40,7 @@ const Dashboard = () => {
             <div className='flex flex-row items-center gap-3 shadow-card border border-blue-500 p-4 w-60 h-24 whitespace-nowrap flex-grow-0 flex-shrink-0 rounded-md'>
               <img src={assets.allUsers} alt="" />
               <div className='flex flex-row gap-3'>
-                <p className='text-2xl font-medium text-slate-500'>{dashboardData.enrolledStudentsData.length}</p>
+                <p className='text-2xl font-medium text-slate-500'>{dashboardData.enrolledUsersData.length}</p>
                 <p className='text-base text-slate-500'> Total enrollments</p>
               </div>
             </div>
@@ -46,7 +64,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody className='text-sm text-gray-500'>
-                {dashboardData.enrolledStudentsData.map((item, index) => (
+                {dashboardData.enrolledUsersData.map((item, index) => (
                   <tr key={index} className='border-b border-gray-500/20'>
                     <td className='px-4 py-3 text-center hidden sm:table-cell'>{index+1}</td>
                     <td className='md:px-4 px-2 py-3 flex items-center space-x-3'>

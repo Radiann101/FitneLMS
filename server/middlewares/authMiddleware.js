@@ -1,19 +1,25 @@
 import { clerkClient } from "@clerk/express";
 
-//Middleware (Protect Admin route)
-
-export const protectAdmin = async (req, res, next)=>{
+// Middleware (Protect Admin route)
+export const protectAdmin = async (req, res, next) => {
     try {
-        const userId = req.auth.userId
-        const response = await clerkClient.users.getUser(userId)
+        // Change from req.auth.userId to req.auth()
+        const { userId } = req.auth(); 
 
-        if (response.publicMetadata.role !== 'admin'){
-            return res.json({success:false, message: 'Unauthorized Access'})
+        if (!userId) {
+            return res.json({ success: false, message: 'Unauthorized Access: No Session' });
         }
 
-        next()
+        const response = await clerkClient.users.getUser(userId);
+
+        if (response.publicMetadata.role !== 'admin') {
+            return res.json({ success: false, message: 'Unauthorized Access: Admin role required' });
+        }
+
+        next();
 
     } catch (error) {
-        res.json({success:false, message: error.message})
+        // If getUser fails (e.g. user deleted in Clerk but session still active)
+        res.json({ success: false, message: error.message });
     }
 }

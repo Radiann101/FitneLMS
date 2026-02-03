@@ -2,28 +2,47 @@ import { CourseProgress } from "../models/CourseProgress.js"
 import User from "../models/User.js"
 import Course from "../models/Course.js"
 //Fetch user data
-export const getUserData = async(req, res) =>{
+export const getUserData = async (req, res) => {
     try {
-        const userId = req.auth.userId
-        const user = await User.findById(userId)
-        if (!user){
-            return res.json({success: false, message: 'User not found'})
+        // Extract userId from the auth object provided by the middleware
+        const { userId } = req.auth; 
+        console.log(userId)
+        if (!userId) {
+            return res.json({ success: false, message: 'Unauthorized: No User ID found' });
         }
-        res.json({success: true, user})
+
+        // Search for the user using the string ID from Clerk
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.json({ success: false, message: 'User not found in Database' });
+        }
+
+        res.json({ success: true, user });
+
     } catch (error) {
-        res.json({success: false, message: error.message})
+        console.error("Controller Error:", error.message);
+        res.json({ success: false, message: error.message });
     }
-}
+};
 
 //Users Enrolled Courses w lecture link
-export const userEnrolledCourses = async(req, res)=>{
+export const userEnrolledCourses = async (req, res) => {
     try {
-        const userId = req.auth.userId
-        const userData = await User.findById(userId).populate('enrolledCourses')
-        res.json({success: true, enrolledCourses: userData.enrolledCourses})
+        // Change from req.auth.userId to req.auth() to get the actual ID
+        const { userId } = req.auth();
+
+        // Use findById (which works because my schema defines _id as String)
+        const userData = await User.findById(userId).populate('enrolledCourses');
+
+        if (!userData) {
+            return res.json({ success: false, message: 'User not found' });
+        }
+
+        res.json({ success: true, enrolledCourses: userData.enrolledCourses });
 
     } catch (error) {
-        res.json({success: false, message: error.message})
+        res.json({ success: false, message: error.message });
     }
 }
 
@@ -99,7 +118,8 @@ export const addUserRating = async(req, res)=>{
 // Enroll User in a Course (Free)
 export const enrollUser = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        // Correct way to get userId with clerkMiddleware()
+        const { userId } = req.auth();
         const { courseId } = req.body;
 
         const course = await Course.findById(courseId);
@@ -112,20 +132,16 @@ export const enrollUser = async (req, res) => {
             return res.json({ success: false, message: 'User not found' });
         }
 
-        // Check if already enrolled to prevent duplicates
         if (user.enrolledCourses.includes(courseId)) {
             return res.json({ success: true, message: 'Already enrolled' });
         }
 
-        // 1. Add Course to User's enrolledCourses array
         user.enrolledCourses.push(courseId);
         await user.save();
 
-        // 2. Add User to Course's enrolledStudents array
-        if (course.enrolledUsers) {
-            course.enrolledUsers.push(userId);
-            await course.save();
-        }
+        // Ensure this matches your schema (enrolledUsers)
+        course.enrolledUsers.push(userId);
+        await course.save();
 
         res.json({ success: true, message: 'Successfully enrolled' });
 

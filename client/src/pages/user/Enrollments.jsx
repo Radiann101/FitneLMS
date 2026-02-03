@@ -2,20 +2,47 @@ import React, { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 import {Line} from 'rc-progress'
 import Footer from '../../components/user/Footer'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 const Enrollments = () => {
-  const {enrolledCourses, calCourseTime, navigate} = useContext(AppContext)
+  const {enrolledCourses, calCourseTime, navigate, userData, getUserEnrolledCourses
+    ,backendUrl, getToken, calLecturesNo} = useContext(AppContext)
 
 
-  const [progress, setProgress]=useState([
-    {lectureCompleted: 2, totalLectures: 4},
-    {lectureCompleted: 1, totalLectures: 4},
-    {lectureCompleted: 2, totalLectures: 6},
-    {lectureCompleted: 2, totalLectures: 4},
-    {lectureCompleted: 5, totalLectures: 5},
-    {lectureCompleted: 2, totalLectures: 3}
+  const [progress, setProgress]=useState([])
 
-  ])
+  const getCourseProgress = async()=>{
+    try {
+      const token = await getToken();
+      const tempProgressAray = await Promise.all(enrolledCourses.map(async (course)=>{
+        const {data} = await axios.post(`${backendUrl}/api/user/get-course-progress`,
+          {courseId: course._id}, {headers: {Authorization: `Bearer ${token}`}}
+        )
+        let totalLectures = calLecturesNo(course);
+        const lectureCompleted = data.progressData ? data.progressData.lectureCompleted.length : 0;
+        return {totalLectures, lectureCompleted}
+
+      }))
+      setProgress(tempProgressAray);
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+useEffect(()=>{
+  if (userData){
+    getUserEnrolledCourses()
+  }
+},[userData])
+
+
+useEffect(()=>{
+  if (enrolledCourses.length > 0){
+    getCourseProgress()
+  }
+},[enrolledCourses])
+
   return (
     <>
     <div className='md:px-30 px-10 pt-10'>
