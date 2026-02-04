@@ -31,15 +31,10 @@ const AboutMe = () => {
             
             <div className='space-y-4 text-lg text-gray-600 leading-relaxed'>
               <p>
-                Six years ago, I didn't recognize the person in the mirror. I started my journey as an obese kid who felt lost, lacked confidence, and didn't know the first thing about fitness.
+                Six years ago, I was an obese kid, unsure of how calories worked, what being healthy actually looked and felt like.
               </p>
-              
               <p>
-                I didn't have a personal trainer or a fancy gym membership. Instead, I spent <strong>countless hours</strong> watching YouTube videos, reading articles, and experimenting with what worked and what didn't. I made the mistakes so you don't have to.
-              </p>
-
-              <p>
-                Today, after half a decade of consistent lifting and learning, I've realized that the hardest part of fitness isn't the workout—it's knowing where to start. 
+                Today, after half a decade of consistent lifting and learning, I stand here with all the knowledge I've gathered over the years, eager to help people who find my status 6 years ago similiar to theirs now.
               </p>
 
               <div className='bg-blue-50 border-l-4 border-blue-600 p-6 my-6'>
@@ -49,7 +44,7 @@ const AboutMe = () => {
               </div>
 
               <p>
-                Whether you're here to lose weight, build muscle, or just find a healthier routine, I've built FitneLMS to be the mentor I wish I had when I started.
+                Whether you're here to lose weight, build muscle, or just find a healthier routine, I will be here to hold your hand throughout the whole journey.
               </p>
             </div>
 
