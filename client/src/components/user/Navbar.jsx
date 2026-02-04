@@ -1,43 +1,61 @@
 import React, { useContext } from 'react'
 import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
-import { useClerk } from '@clerk/clerk-react'
-import { UserButton } from '@clerk/clerk-react'
-import { useUser } from '@clerk/clerk-react'
+import { useClerk, UserButton, useUser } from '@clerk/clerk-react'
 import { AppContext } from '../../context/AppContext'
+import SearchBar from './SearchBar'
 
 const Navbar = () => {
 
-  const {openSignIn}= useClerk()
-  const {user} = useUser()
-  const {navigate} = useContext(AppContext)
-
+  const { openSignIn } = useClerk()
+  const { user } = useUser()
+  const { navigate } = useContext(AppContext)
 
   return (
-    <div className='flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 bg-slate-600'>
-      <img onClick={()=>navigate('/')} src={assets.logo} alt ="logo" className='w-30 lg:w-50 cursor-pointer'/>
-      <div className='hidden md:flex items-center gap-5 text-gray-800'>
-          <div className='flex items-center gap-5'>
-            { user && <>
-            <Link to='/Enrollments' className='text-white'>My Enrollments</Link>
-            </>}
-          </div>
-          {
-            user ? <UserButton/> : 
+    <div className='flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4 bg-slate-600 sticky top-0 z-50 shadow-md'>
 
-            <button onClick={()=> openSignIn()} className='bg-blue-600 text-white px-5 py-2 cursor-pointer'>Create Account</button>
-          }
+      <div className='flex items-center gap-4'>
+        <img 
+          onClick={() => navigate('/')} 
+          src={assets.logo} 
+          alt="logo" 
+          className='w-28 lg:w-32 cursor-pointer hover:opacity-90 transition-opacity' 
+        />
       </div>
-      <div className='md:hidden flex items-center gap-2 sm:gap-5 text-gray-500'>
-          <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
-            { user && <>
-            <Link to='/Enrollments' className='text-white'>My Enrollments</Link>
-            </>}
+
+      <div className='hidden lg:block w-full max-w-md px-4'>
+        <SearchBar />
+      </div>
+
+      <div className='hidden md:flex items-center gap-6 text-white font-medium'>
+          <div className='flex items-center gap-6'>
+            <Link to='/course-list' className='hover:text-blue-300 transition-colors whitespace-nowrap'>All Courses</Link>
+            
+            { user && (
+              <Link to='/Enrollments' className='hover:text-blue-300 transition-colors whitespace-nowrap'>My Enrollments</Link>
+            )}
           </div>
-          {
-            user ? <UserButton/> : <button onClick={()=> openSignIn()}><img src={assets.icon} className='cursor-pointer rounded-full' alt="" /></button>
-          }
-          
+
+          {user ? (
+            <div className='flex items-center gap-3 border-l border-gray-400 pl-6'>
+              <UserButton />
+            </div>
+          ) : (
+            <button 
+              onClick={() => openSignIn()} 
+              className='bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded font-bold transition-all cursor-pointer whitespace-nowrap'
+            >
+              Create Account
+            </button>
+          )}
+      </div>
+      {/* for mobile */}
+      <div className='md:hidden flex items-center gap-3 text-white'>
+          <div className='flex items-center gap-3 text-xs font-bold uppercase'>
+            <Link to='/course-list'>Courses</Link>
+            { user && <Link to='/Enrollments'>Progress</Link> }
+          </div>
+          { user ? <UserButton /> : <button onClick={() => openSignIn()} className='cursor-pointer'><img src={assets.icon} className='w-8 h-8 rounded-full' alt="user" /></button> }
       </div>
     </div>
   )
