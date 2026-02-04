@@ -17,6 +17,14 @@ import dashboardLogo from './dashboard_icon_40x40.png'
 import upload_icon from './upload_40x40.png'
 import dropdown_icon from './dropdown_40x40.png'
 import crossIcon from './cross-23_40x40.png'
+import about1 from './About1.png'
+import about2 from './About2.png'
+import about3 from './About3.png'
+import about4 from './About4.png'
+import about5 from './About5.png'
+import AboutMe from './aboutMe.jpg'
+import aboutMe2 from './aboutmeeeee.jpg'
+
 
 export const assets ={
     logo,
@@ -37,7 +45,9 @@ export const assets ={
     dashboardLogo,
     upload_icon,
     dropdown_icon,
-    crossIcon
+    crossIcon,
+    about1, about2, about3, about4, about5,
+    AboutMe, aboutMe2
 }
 
 export const testData =[

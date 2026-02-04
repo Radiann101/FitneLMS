@@ -45,7 +45,7 @@ useEffect(()=>{
 
   return (
     <>
-    <div className='md:px-30 px-10 pt-10'>
+    <div className='md:px-30 px-10 pt-10 min-h-200'>
       <h1 className='text-2xl font-semibold'>Enrollments page</h1>
       <table className='md:table-auto table-fixed w-full overflow-hidden border mt-10'>
         <thead className='text-gray-500 border-b border-gray-500 text-sm text-left max-sm:hidden'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -19,10 +20,10 @@ const Footer = () => {
         <div className='flex flex-col md:items-start items-center w-full'>
           <h2 className='font-bold text-white mb-5'>Quick links </h2>
           <ul className='flex flex-col px-5 w-full justify-between mt-3 text-sm text-white/90 space-y-2'>
-            <li><a href="#">Home </a></li>
-            <li><a href="#">About this website </a></li>
-            <li><a href="#">Contact Us </a></li>
-            <li><a href="#">Social Media</a></li>
+            <li><Link to="/" className="hover:text-white">Home</Link></li>
+            <li><Link to="/about" className="hover:text-white">About this website</Link></li>
+            <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
+            <li><Link to="/social" className="hover:text-white">Social Media</Link></li>
           </ul>
         </div>
 

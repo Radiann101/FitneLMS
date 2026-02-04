@@ -94,12 +94,19 @@ useEffect(()=> {
             <div className='pt-3'>
                 {courseData?.courseContent?.map((chapter, index) => (
                    <div className='border border-gray-500 rounded mp-2 bg-white mb-1' key={index}>
-                      <div onClick={()=> toggleChapter(index)} className='flex items-center justify-between cursor-pointer px-3 py-4'>
-                      <div className='flex items-center gap-2'>
-                        <img className={`transform transition-transform ${openChapter[index]? 'rotate-180':'' }`} src={assets.arrowDown} alt="arrow_down_icon" />
-                        <p className='md:text-base test-sm font-medium'>{chapter.chapterTitle}</p>
+                      <div onClick={()=> toggleChapter(index)} className='flex items-center justify-between cursor-pointer px-5 py-6 min-h-[80px] hover:bg-white-50 transition-all'>
+                      <div className='flex items-center gap-4'>
+                        <img className={` transform transition-transform ${openChapter[index]? 'rotate-180':'' }`} src={assets.arrowDown} alt="arrow_down_icon" />
+                        <p className='md:text-lg text-base font-semibold text-gray-700 leading-tight'>{chapter.chapterTitle}</p>
                       </div>
-                      <p className='text-sm md:text-default font-extrabold'>{chapter.chapterContent.length} lectures - {calChapterTime(chapter)}</p>
+                      <div className='flex items-center gap-3 text-slate-500 whitespace-nowrap ml-4'>
+                          <p className='text-sm md:text-base font-medium'>
+                              {chapter.chapterContent.length} lecture(s)
+                          </p> -
+                          <p className='text-sm md:text-base font-medium'>
+                            {calChapterTime(chapter)}
+                          </p>
+                        </div>
                     </div>
                     <div className={`overflow-hidden transition-all ${openChapter[index] ? 'max-h-70' : 'max-h-0'}`}>
                       <ul className='list-disc md:pl-10 pl-4 pr-4 py-2 text-gray-500 border-t border-gray-500'>

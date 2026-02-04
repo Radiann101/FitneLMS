@@ -14,6 +14,10 @@ import UsersEnrolled from './pages/admin/UsersEnrolled'
 import "quill/dist/quill.snow.css";
 import Navbar from './components/user/Navbar'
 import {ToastContainer} from 'react-toastify'
+import About from './pages/user/About'
+import Contact from './pages/user/Contact'
+import Social from './pages/user/Social'
+import AboutMe from './pages/user/AboutMe'
 
 const App = () => {
 
@@ -30,6 +34,10 @@ const isAdminRoute = useMatch('/admin/*')
         <Route path='/course/:id' element={<CourseDetails />}/>
         <Route path='/enrollments' element={<Enrollments />}/>
         <Route path='/Watch/:courseId' element={<Watch />}/>
+        <Route path='/About' element={<About />}/>
+        <Route path='/Social' element={<Social />}/>
+        <Route path='/about-me' element={<AboutMe />}/>
+        <Route path='/Contact' element={<Contact />}/>
         <Route path='/loading/:path' element={<Loading />}/>
         <Route path='/admin' element={<Admin />}>
             <Route path='/admin' element={<Dashboard />} />
