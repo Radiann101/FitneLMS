@@ -1,0 +1,32 @@
+{
+  "redis": [
+    {
+      "run": 1,
+      "timestamp": "2026-06-02T10:50:17.113Z",
+      "avgLatency": 43.01,
+      "p95Latency": 44,
+      "reqPerSec": 230,
+      "errors": 0
+    }
+  ],
+  "memcached": [
+    {
+      "run": 1,
+      "timestamp": "2026-06-02T10:53:07.960Z",
+      "avgLatency": 0.63,
+      "p95Latency": 1,
+      "reqPerSec": 9048.37,
+      "errors": 0
+    }
+  ],
+  "memory": [
+    {
+      "run": 1,
+      "timestamp": "2026-06-02T10:53:44.891Z",
+      "avgLatency": 0.04,
+      "p95Latency": 1,
+      "reqPerSec": 12245.6,
+      "errors": 0
+    }
+  ]
+}

@@ -1,0 +1,848 @@
+{
+  "low": {
+    "redis": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T10:50:17.113Z",
+        "avgLatency": 43.01,
+        "p95Latency": 44,
+        "reqPerSec": 230,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-02T11:13:34.370Z",
+        "avgLatency": 68.5,
+        "stdDev": 3.78,
+        "p95Latency": 70,
+        "reqPerSec": 145.1,
+        "throughput": 0.468096,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-02T12:28:17.283Z",
+        "avgLatency": 69.23,
+        "stdDev": 3.92,
+        "p95Latency": 70,
+        "reqPerSec": 144,
+        "throughput": 0.4644608,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-02T12:34:14.154Z",
+        "avgLatency": 71.7,
+        "stdDev": 2.99,
+        "p95Latency": 73,
+        "reqPerSec": 138.9,
+        "throughput": 0.448128,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-02T12:34:52.732Z",
+        "avgLatency": 56.57,
+        "stdDev": 2.32,
+        "p95Latency": 58,
+        "reqPerSec": 175.1,
+        "throughput": 0.5647871999999999,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T07:24:21.518Z",
+        "avgLatency": 41.84,
+        "stdDev": 2.31,
+        "p95Latency": 43,
+        "reqPerSec": 235.9,
+        "throughput": 0.7609855999999999,
+        "errors": 0
+      },
+      {
+        "run": 7,
+        "timestamp": "2026-06-03T07:24:49.337Z",
+        "avgLatency": 64.64,
+        "stdDev": 3.1,
+        "p95Latency": 66,
+        "reqPerSec": 153.5,
+        "throughput": 0.495232,
+        "errors": 0
+      }
+    ],
+    "memcached": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T10:53:07.960Z",
+        "avgLatency": 0.63,
+        "p95Latency": 1,
+        "reqPerSec": 9048.37,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-02T12:40:00.438Z",
+        "avgLatency": 0.86,
+        "stdDev": 0.81,
+        "p95Latency": 1,
+        "reqPerSec": 8502.4,
+        "throughput": 27.451392,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T07:00:46.493Z",
+        "avgLatency": 0.51,
+        "stdDev": 0.99,
+        "p95Latency": 1,
+        "reqPerSec": 9185.6,
+        "throughput": 29.6599552,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T10:46:18.132Z",
+        "avgLatency": 0.59,
+        "stdDev": 0.92,
+        "p95Latency": 1,
+        "reqPerSec": 8974.91,
+        "throughput": 28.975104,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T10:46:36.543Z",
+        "avgLatency": 0.52,
+        "stdDev": 0.96,
+        "p95Latency": 1,
+        "reqPerSec": 9136.8,
+        "throughput": 29.507584,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T10:46:54.063Z",
+        "avgLatency": 0.47,
+        "stdDev": 0.79,
+        "p95Latency": 1,
+        "reqPerSec": 9352.37,
+        "throughput": 30.19794619,
+        "errors": 0
+      }
+    ],
+    "memory": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T10:53:44.891Z",
+        "avgLatency": 0.04,
+        "p95Latency": 1,
+        "reqPerSec": 12245.6,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T07:02:07.591Z",
+        "avgLatency": 0.04,
+        "stdDev": 0.51,
+        "p95Latency": 1,
+        "reqPerSec": 12782.4,
+        "throughput": 41.18609921,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T07:02:32.738Z",
+        "avgLatency": 0.04,
+        "stdDev": 0.43,
+        "p95Latency": 1,
+        "reqPerSec": 12434.4,
+        "throughput": 40.0654336,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T10:54:51.452Z",
+        "avgLatency": 0.04,
+        "stdDev": 0.43,
+        "p95Latency": 1,
+        "reqPerSec": 12398.19,
+        "throughput": 39.95163928,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T10:55:07.483Z",
+        "avgLatency": 0.04,
+        "stdDev": 0.48,
+        "p95Latency": 1,
+        "reqPerSec": 12545.1,
+        "throughput": 40.419328,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T10:55:30.859Z",
+        "avgLatency": 0.04,
+        "stdDev": 0.45,
+        "p95Latency": 1,
+        "reqPerSec": 12345.6,
+        "throughput": 39.77707521,
+        "errors": 0
+      },
+      {
+        "run": 7,
+        "timestamp": "2026-06-04T14:05:10.958Z",
+        "avgLatency": 0.13,
+        "stdDev": 0.52,
+        "p95Latency": 1,
+        "reqPerSec": 11177.1,
+        "throughput": 36.01426619,
+        "errors": 0
+      },
+      {
+        "run": 8,
+        "timestamp": "2026-06-04T14:06:45.014Z",
+        "avgLatency": 0.07,
+        "stdDev": 0.34,
+        "p95Latency": 1,
+        "reqPerSec": 12036,
+        "throughput": 38.780928,
+        "errors": 0
+      },
+      {
+        "run": 9,
+        "timestamp": "2026-06-04T14:07:31.260Z",
+        "avgLatency": 0.11,
+        "stdDev": 0.47,
+        "p95Latency": 1,
+        "reqPerSec": 11455.2,
+        "throughput": 36.9164288,
+        "errors": 0
+      },
+      {
+        "run": 10,
+        "timestamp": "2026-06-04T14:21:26.861Z",
+        "avgLatency": 0.09,
+        "stdDev": 0.46,
+        "p95Latency": 1,
+        "reqPerSec": 11760.8,
+        "throughput": 37.896192,
+        "errors": 0
+      },
+      {
+        "run": 11,
+        "timestamp": "2026-06-26T10:24:07.677Z",
+        "avgLatency": 1.02,
+        "stdDev": 0.47,
+        "p95Latency": 1,
+        "reqPerSec": 8569.6,
+        "throughput": 60.6633984,
+        "errors": 0
+      },
+      {
+        "run": 12,
+        "timestamp": "2026-06-26T10:25:27.269Z",
+        "avgLatency": 0.13,
+        "stdDev": 0.53,
+        "p95Latency": 1,
+        "reqPerSec": 10825.6,
+        "throughput": 76.644352,
+        "errors": 0
+      },
+      {
+        "run": 13,
+        "timestamp": "2026-06-26T14:59:31.595Z",
+        "avgLatency": 0.27,
+        "stdDev": 0.63,
+        "p95Latency": 1,
+        "reqPerSec": 9865.82,
+        "throughput": 69.85690764,
+        "errors": 0
+      },
+      {
+        "run": 14,
+        "timestamp": "2026-06-30T15:17:12.656Z",
+        "avgLatency": 0.14,
+        "stdDev": 0.52,
+        "p95Latency": 1,
+        "reqPerSec": 10405.46,
+        "throughput": 73.66544291,
+        "errors": 0
+      }
+    ]
+  },
+  "medium": {
+    "memcached": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:15:09.923Z",
+        "avgLatency": 7.89,
+        "stdDev": 2.68,
+        "p95Latency": 18,
+        "reqPerSec": 12065.6,
+        "throughput": 38.95787521,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T07:05:51.951Z",
+        "avgLatency": 7.76,
+        "stdDev": 2.59,
+        "p95Latency": 15,
+        "reqPerSec": 12249.6,
+        "throughput": 39.550976,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T07:06:27.918Z",
+        "avgLatency": 8.07,
+        "stdDev": 3.01,
+        "p95Latency": 18,
+        "reqPerSec": 11680.8,
+        "throughput": 37.7192448,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T11:24:11.200Z",
+        "avgLatency": 11.71,
+        "stdDev": 4.2,
+        "p95Latency": 26,
+        "reqPerSec": 8219,
+        "throughput": 26.5388032,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T11:24:33.158Z",
+        "avgLatency": 8.16,
+        "stdDev": 3.3,
+        "p95Latency": 21,
+        "reqPerSec": 11617.6,
+        "throughput": 37.51608321,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T11:24:47.888Z",
+        "avgLatency": 8.26,
+        "stdDev": 3.41,
+        "p95Latency": 20,
+        "reqPerSec": 11432.8,
+        "throughput": 36.913152,
+        "errors": 0
+      }
+    ],
+    "memory": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:16:18.464Z",
+        "avgLatency": 11.68,
+        "stdDev": 2.76,
+        "p95Latency": 18,
+        "reqPerSec": 8222.4,
+        "throughput": 26.5158656,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T07:04:17.511Z",
+        "avgLatency": 7.3,
+        "stdDev": 1.14,
+        "p95Latency": 9,
+        "reqPerSec": 13015.2,
+        "throughput": 41.9364864,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T07:04:45.260Z",
+        "avgLatency": 7.45,
+        "stdDev": 1.43,
+        "p95Latency": 10,
+        "reqPerSec": 12725.6,
+        "throughput": 40.9993216,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T07:05:11.534Z",
+        "avgLatency": 7.39,
+        "stdDev": 1.35,
+        "p95Latency": 9,
+        "reqPerSec": 12680,
+        "throughput": 40.84203521,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T11:29:55.331Z",
+        "avgLatency": 7.41,
+        "stdDev": 1.57,
+        "p95Latency": 9,
+        "reqPerSec": 12764.8,
+        "throughput": 41.130393600000005,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T11:30:19.596Z",
+        "avgLatency": 7.45,
+        "stdDev": 1.73,
+        "p95Latency": 9,
+        "reqPerSec": 12532.8,
+        "throughput": 40.38656,
+        "errors": 0
+      }
+    ],
+    "redis": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:17:24.023Z",
+        "avgLatency": 27.48,
+        "stdDev": 2.33,
+        "p95Latency": 31,
+        "reqPerSec": 3575.4,
+        "throughput": 11.532697599999999,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T07:07:49.924Z",
+        "avgLatency": 38.65,
+        "stdDev": 2.37,
+        "p95Latency": 43,
+        "reqPerSec": 2556.2,
+        "throughput": 8.2446336,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T07:08:13.778Z",
+        "avgLatency": 38.01,
+        "stdDev": 2.13,
+        "p95Latency": 41,
+        "reqPerSec": 2596.2,
+        "throughput": 8.3738624,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T07:08:30.222Z",
+        "avgLatency": 32.82,
+        "stdDev": 2.41,
+        "p95Latency": 36,
+        "reqPerSec": 3004.6,
+        "throughput": 9.6886784,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T11:16:41.606Z",
+        "avgLatency": 27.25,
+        "stdDev": 3.1,
+        "p95Latency": 31,
+        "reqPerSec": 3607.4,
+        "throughput": 11.6350976,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T11:16:58.085Z",
+        "avgLatency": 32.48,
+        "stdDev": 2.13,
+        "p95Latency": 36,
+        "reqPerSec": 3030,
+        "throughput": 9.7705984,
+        "errors": 0
+      }
+    ]
+  },
+  "high": {
+    "redis": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:19:43.541Z",
+        "avgLatency": 50.45,
+        "stdDev": 8.4,
+        "p95Latency": 68,
+        "reqPerSec": 9822.4,
+        "throughput": 31.68256,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T11:35:46.170Z",
+        "avgLatency": 49.76,
+        "stdDev": 8.67,
+        "p95Latency": 68,
+        "reqPerSec": 9924.8,
+        "throughput": 32.0110592,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T11:38:46.184Z",
+        "avgLatency": 57.21,
+        "stdDev": 8.89,
+        "p95Latency": 71,
+        "reqPerSec": 8655.4,
+        "throughput": 27.9134208,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T11:39:00.996Z",
+        "avgLatency": 51.86,
+        "stdDev": 8.44,
+        "p95Latency": 72,
+        "reqPerSec": 8749.5,
+        "throughput": 28.222054399999998,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T11:39:16.759Z",
+        "avgLatency": 68.93,
+        "stdDev": 10.49,
+        "p95Latency": 96,
+        "reqPerSec": 7204.4,
+        "throughput": 23.2374272,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T11:39:41.183Z",
+        "avgLatency": 59.33,
+        "stdDev": 33.33,
+        "p95Latency": 89,
+        "reqPerSec": 4203.7,
+        "throughput": 13.558897199999999,
+        "errors": 0
+      },
+      {
+        "run": 7,
+        "timestamp": "2026-06-03T11:43:47.321Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 48074
+      }
+    ],
+    "memcached": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:21:10.341Z",
+        "avgLatency": 45.46,
+        "stdDev": 7.85,
+        "p95Latency": 57,
+        "reqPerSec": 10921.6,
+        "throughput": 35.2731136,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-03T11:49:39.391Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-03T11:55:04.264Z",
+        "avgLatency": 47.26,
+        "stdDev": 7.39,
+        "p95Latency": 62,
+        "reqPerSec": 10455.21,
+        "throughput": 33.761689600000004,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-03T11:55:21.189Z",
+        "avgLatency": 45.35,
+        "stdDev": 7.12,
+        "p95Latency": 57,
+        "reqPerSec": 10932,
+        "throughput": 35.3050624,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-03T11:55:36.807Z",
+        "avgLatency": 46.68,
+        "stdDev": 8.23,
+        "p95Latency": 61,
+        "reqPerSec": 10607.2,
+        "throughput": 34.2540288,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-03T11:55:57.584Z",
+        "avgLatency": 44.8,
+        "stdDev": 7.6,
+        "p95Latency": 59,
+        "reqPerSec": 11056,
+        "throughput": 35.7113856,
+        "errors": 0
+      }
+    ],
+    "memory": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:21:47.068Z",
+        "avgLatency": 46.93,
+        "stdDev": 7.25,
+        "p95Latency": 59,
+        "reqPerSec": 10533.6,
+        "throughput": 33.9386368,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-04T13:59:01.577Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-04T13:59:25.818Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 398
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-04T14:01:30.379Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-04T14:05:50.325Z",
+        "avgLatency": 49.68,
+        "stdDev": 9.73,
+        "p95Latency": 63,
+        "reqPerSec": 9954.6,
+        "throughput": 32.077414399999995,
+        "errors": 0
+      },
+      {
+        "run": 6,
+        "timestamp": "2026-06-04T14:06:09.573Z",
+        "avgLatency": 49.66,
+        "stdDev": 8.74,
+        "p95Latency": 64,
+        "reqPerSec": 9974.6,
+        "throughput": 32.141312,
+        "errors": 0
+      },
+      {
+        "run": 7,
+        "timestamp": "2026-06-04T14:06:24.838Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 8,
+        "timestamp": "2026-06-04T14:07:02.578Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 9,
+        "timestamp": "2026-06-04T14:07:51.368Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 10,
+        "timestamp": "2026-06-04T14:12:29.284Z",
+        "avgLatency": 49.75,
+        "stdDev": 9.11,
+        "p95Latency": 68,
+        "reqPerSec": 9957.6,
+        "throughput": 32.083148800000004,
+        "errors": 0
+      },
+      {
+        "run": 11,
+        "timestamp": "2026-06-04T14:20:57.583Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      },
+      {
+        "run": 12,
+        "timestamp": "2026-06-04T14:30:04.112Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 500
+      }
+    ]
+  },
+  "stress": {
+    "redis": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:24:59.926Z",
+        "avgLatency": 96.28,
+        "stdDev": 18.79,
+        "p95Latency": 119,
+        "reqPerSec": 10324.6,
+        "throughput": 33.3012992,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-02T11:25:32.441Z",
+        "avgLatency": 98.74,
+        "stdDev": 20.13,
+        "p95Latency": 122,
+        "reqPerSec": 10087.3,
+        "throughput": 32.5384576,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-02T11:26:05.118Z",
+        "avgLatency": 93.51,
+        "stdDev": 17.62,
+        "p95Latency": 115,
+        "reqPerSec": 10612.8,
+        "throughput": 34.2406336,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-02T11:26:38.792Z",
+        "avgLatency": 101.36,
+        "stdDev": 21.47,
+        "p95Latency": 124,
+        "reqPerSec": 9843.9,
+        "throughput": 31.7642496,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-02T11:27:11.305Z",
+        "avgLatency": 95.03,
+        "stdDev": 19.34,
+        "p95Latency": 118,
+        "reqPerSec": 10451.2,
+        "throughput": 33.7186048,
+        "errors": 0
+      }
+    ],
+    "memcached": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:25:25.884Z",
+        "avgLatency": 94.87,
+        "stdDev": 15.24,
+        "p95Latency": 112,
+        "reqPerSec": 10507.2,
+        "throughput": 33.9369984,
+        "errors": 0
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-06T13:50:13.117Z",
+        "avgLatency": 136.63,
+        "stdDev": 80.46,
+        "p95Latency": 218,
+        "reqPerSec": 7322.7,
+        "throughput": 23.6464128,
+        "errors": 0
+      },
+      {
+        "run": 3,
+        "timestamp": "2026-06-06T13:55:41.336Z",
+        "avgLatency": 130.62,
+        "stdDev": 51.06,
+        "p95Latency": 177,
+        "reqPerSec": 7606.8,
+        "throughput": 24.564940800000002,
+        "errors": 0
+      },
+      {
+        "run": 4,
+        "timestamp": "2026-06-06T13:55:58.546Z",
+        "avgLatency": 145.18,
+        "stdDev": 98.95,
+        "p95Latency": 184,
+        "reqPerSec": 6853.4,
+        "throughput": 22.1355008,
+        "errors": 0
+      },
+      {
+        "run": 5,
+        "timestamp": "2026-06-06T13:56:14.618Z",
+        "avgLatency": 148.01,
+        "stdDev": 105.62,
+        "p95Latency": 165,
+        "reqPerSec": 6750.4,
+        "throughput": 21.7992192,
+        "errors": 0
+      }
+    ],
+    "memory": [
+      {
+        "run": 1,
+        "timestamp": "2026-06-02T11:25:56.887Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 1000
+      },
+      {
+        "run": 2,
+        "timestamp": "2026-06-04T15:17:40.526Z",
+        "avgLatency": 0,
+        "stdDev": 0,
+        "p95Latency": 0,
+        "reqPerSec": 0,
+        "throughput": 0,
+        "errors": 1000
+      }
+    ]
+  }
+}
